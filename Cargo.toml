@@ -1,7 +1,7 @@
 [package]
-name = "piggy"
+name = "rustcache"
 version = "0.1.0"
-authors = ["问天 <wengw@yoozoo.com>"]
+authors = ["Weng Wei <wuvist@gmail.com>"]
 edition = "2018"
 
 [dependencies]

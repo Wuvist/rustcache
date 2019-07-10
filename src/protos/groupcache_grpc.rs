@@ -18,7 +18,7 @@
 #![allow(unused_imports)]
 #![allow(unused_results)]
 
-const METHOD_GROUP_CACHE_GET: ::grpcio::Method<super::hello::GetRequest, super::hello::GetResponse> = ::grpcio::Method {
+const METHOD_GROUP_CACHE_GET: ::grpcio::Method<super::groupcache::GetRequest, super::groupcache::GetResponse> = ::grpcio::Method {
     ty: ::grpcio::MethodType::Unary,
     name: "/groupcachepb.GroupCache/Get",
     req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
@@ -37,19 +37,19 @@ impl GroupCacheClient {
         }
     }
 
-    pub fn get_opt(&self, req: &super::hello::GetRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::hello::GetResponse> {
+    pub fn get_opt(&self, req: &super::groupcache::GetRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::groupcache::GetResponse> {
         self.client.unary_call(&METHOD_GROUP_CACHE_GET, req, opt)
     }
 
-    pub fn get(&self, req: &super::hello::GetRequest) -> ::grpcio::Result<super::hello::GetResponse> {
+    pub fn get(&self, req: &super::groupcache::GetRequest) -> ::grpcio::Result<super::groupcache::GetResponse> {
         self.get_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn get_async_opt(&self, req: &super::hello::GetRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::hello::GetResponse>> {
+    pub fn get_async_opt(&self, req: &super::groupcache::GetRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::groupcache::GetResponse>> {
         self.client.unary_call_async(&METHOD_GROUP_CACHE_GET, req, opt)
     }
 
-    pub fn get_async(&self, req: &super::hello::GetRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::hello::GetResponse>> {
+    pub fn get_async(&self, req: &super::groupcache::GetRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::groupcache::GetResponse>> {
         self.get_async_opt(req, ::grpcio::CallOption::default())
     }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
@@ -58,7 +58,7 @@ impl GroupCacheClient {
 }
 
 pub trait GroupCache {
-    fn get(&mut self, ctx: ::grpcio::RpcContext, req: super::hello::GetRequest, sink: ::grpcio::UnarySink<super::hello::GetResponse>);
+    fn get(&mut self, ctx: ::grpcio::RpcContext, req: super::groupcache::GetRequest, sink: ::grpcio::UnarySink<super::groupcache::GetResponse>);
 }
 
 pub fn create_group_cache<S: GroupCache + Send + Clone + 'static>(s: S) -> ::grpcio::Service {
