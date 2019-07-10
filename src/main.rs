@@ -1,14 +1,19 @@
 #[macro_use]
 extern crate log;
 
-use grpcio::{RpcContext, UnarySink};
+use std::io::Read;
+use std::sync::Arc;
+use std::{io, thread};
 
-// use rustcache::{GroupCache, GetRequest, GetResponse};
+use grpcio::{Environment, RpcContext, ServerBuilder, UnarySink};
+
+use futures::sync::oneshot;
 use futures::future::Future;
 
 use rustcache::groupcache_grpc::GroupCache;
 use rustcache::groupcache::{GetRequest, GetResponse};
 
+#[derive(Clone)]
 struct RustCacheService;
 
 impl GroupCache for RustCacheService {
@@ -23,5 +28,24 @@ impl GroupCache for RustCacheService {
 }
 
 fn main() {
+    let env = Arc::new(Environment::new(1));
+    let service = rustcache::groupcache_grpc::create_group_cache(RustCacheService);
+    let mut server = ServerBuilder::new(env)
+        .register_service(service)
+        .bind("127.0.0.1", 50_051)
+        .build()
+        .unwrap();
+    server.start();
+    for &(ref host, port) in server.bind_addrs() {
+        info!("listening on {}:{}", host, port);
+    }
+    let (tx, rx) = oneshot::channel();
+    thread::spawn(move || {
+        info!("Press ENTER to exit...");
+        let _ = io::stdin().read(&mut [0]).unwrap();
+        tx.send(())
+    });
+    let _ = rx.wait();
+let _ = server.shutdown().wait();
 }
 
