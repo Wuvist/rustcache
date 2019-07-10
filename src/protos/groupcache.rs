@@ -17,7 +17,7 @@
 #![allow(unsafe_code)]
 #![allow(unused_imports)]
 #![allow(unused_results)]
-//! Generated file from `protos/groupcache.proto`
+//! Generated file from `proto/groupcache.proto`
 
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
@@ -482,7 +482,7 @@ impl ::protobuf::reflect::ProtobufValue for GetResponse {
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x17protos/groupcache.proto\x12\x0cgroupcachepb\"4\n\nGetRequest\x12\
+    \n\x16proto/groupcache.proto\x12\x0cgroupcachepb\"4\n\nGetRequest\x12\
     \x14\n\x05group\x18\x01\x20\x02(\tR\x05group\x12\x10\n\x03key\x18\x02\
     \x20\x02(\tR\x03key\"B\n\x0bGetResponse\x12\x14\n\x05value\x18\x01\x20\
     \x01(\x0cR\x05value\x12\x1d\n\nminute_qps\x18\x02\x20\x01(\x01R\tminuteQ\

@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	pb "./protos"
+	pb "./groupcachepb"
 	"google.golang.org/grpc"
 )
 
