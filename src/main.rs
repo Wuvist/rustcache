@@ -1,23 +1,18 @@
-struct Rectangle {
-    width: u32,
-    height: u32,
+use grpcio::{RpcContext, UnarySink};
+
+// use rustcache::{GroupCache, GetRequest, GetResponse};
+
+use rustcache::groupcache_grpc::GroupCache;
+use rustcache::groupcache::{GetRequest, GetResponse};
+
+struct RustCacheService;
+
+impl GroupCache for RustCacheService {
+    fn get(&mut self, ctx: RpcContext<'_>, req: GetRequest, sink: UnarySink<GetResponse>) {
+
+    }
 }
 
 fn main() {
-    let mut rect1 = Rectangle { width: 30, height: 50 };
-
-    println!(
-        "The area of the rectangle is {} square pixels.",
-        area(&mut rect1)
-    );
-
-    println!(
-        "The area of the rectangle is {} square pixels.",
-        rect1.width
-    );
 }
 
-fn area(rectangle: &mut Rectangle) -> u32 {
-    rectangle.width = 10;
-    return rectangle.width * rectangle.height
-}

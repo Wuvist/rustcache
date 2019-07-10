@@ -5,3 +5,6 @@ authors = ["Weng Wei <wuvist@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+grpcio = "0.4"
+protobuf = "*"
+futures = "*" # grpcio
