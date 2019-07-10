@@ -32,7 +32,7 @@ fn main() {
     let service = rustcache::groupcache_grpc::create_group_cache(RustCacheService);
     let mut server = ServerBuilder::new(env)
         .register_service(service)
-        .bind("127.0.0.1", 50_051)
+        .bind("127.0.0.1", 8080)
         .build()
         .unwrap();
     server.start();
