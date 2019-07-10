@@ -23,6 +23,7 @@ message GetRequest {
 message GetResponse {
   optional bytes value = 1;
   optional double minute_qps = 2;
+  required string key = 3;
 }
 
 service GroupCache {

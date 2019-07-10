@@ -8,3 +8,4 @@ edition = "2018"
 grpcio = "0.4"
 protobuf = "*"
 futures = "*" # grpcio
+log = "0.4"
