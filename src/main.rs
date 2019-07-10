@@ -19,7 +19,8 @@ struct RustCacheService;
 impl GroupCache for RustCacheService {
     fn get(&mut self, ctx: RpcContext<'_>, req: GetRequest, sink: UnarySink<GetResponse>) {
         let mut resp = GetResponse::new();
-        resp.set_key(req.get_key().to_string() + " - " + &req.get_group().to_string());
+        let data = req.get_key().to_string() + " - " + &req.get_group().to_string();
+        resp.set_value(data.as_bytes().to_vec());
         let f = sink
             .success(resp)
             .map_err(move |e| error!("failed to reply {:?}: {:?}", req, e));
