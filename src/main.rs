@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate log;
 
+mod protos;
 use std::io::Read;
 use std::sync::Arc;
 use std::{io, thread};
@@ -10,8 +11,8 @@ use grpcio::{Environment, RpcContext, ServerBuilder, UnarySink};
 use futures::sync::oneshot;
 use futures::future::Future;
 
-use rustcache::groupcache_grpc::GroupCache;
-use rustcache::groupcache::{GetRequest, GetResponse};
+use protos::groupcache_grpc::GroupCache;
+use protos::groupcache::{GetRequest, GetResponse};
 
 #[derive(Clone)]
 struct RustCacheService;
@@ -30,7 +31,7 @@ impl GroupCache for RustCacheService {
 
 fn main() {
     let env = Arc::new(Environment::new(1));
-    let service = rustcache::groupcache_grpc::create_group_cache(RustCacheService);
+    let service = protos::groupcache_grpc::create_group_cache(RustCacheService);
     let mut server = ServerBuilder::new(env)
         .register_service(service)
         .bind("127.0.0.1", 8080)
