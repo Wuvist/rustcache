@@ -5,6 +5,8 @@ authors = ["Weng Wei <wuvist@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+pretty_env_logger = "0.3.0"
+hyper = "0.12"
 grpcio = "0.4"
 protobuf = "*"
 futures = "*" # grpcio
