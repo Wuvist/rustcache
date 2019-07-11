@@ -8,11 +8,11 @@ use std::{io, thread};
 
 use grpcio::{Environment, RpcContext, ServerBuilder, UnarySink};
 
-use futures::sync::oneshot;
 use futures::future::Future;
+use futures::sync::oneshot;
 
-use protos::groupcache_grpc::GroupCache;
 use protos::groupcache::{GetRequest, GetResponse};
+use protos::groupcache_grpc::GroupCache;
 
 #[derive(Clone)]
 struct RustCacheService;
@@ -48,6 +48,5 @@ fn main() {
         tx.send(())
     });
     let _ = rx.wait();
-let _ = server.shutdown().wait();
+    let _ = server.shutdown().wait();
 }
-
