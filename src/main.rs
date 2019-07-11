@@ -15,8 +15,9 @@ fn main() {
             // This is the `Service` that will handle the connection.
             // `service_fn_ok` is a helper to convert a function that
             // returns a Response into a `Service`.
-            service_fn_ok(move |_: Request<Body>| {
-                Response::new(Body::from("Hello World!"))
+            service_fn_ok(move |req: Request<Body>| {
+                let uri = req.uri().path_and_query().unwrap().as_str().to_string();
+                Response::new(Body::from(uri))
             })
         })
         .map_err(|e| eprintln!("server error: {}", e));
